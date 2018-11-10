@@ -1,0 +1,45 @@
+{
+	"apiversion": "v1",
+	"urlResponse": "http://localhost",
+	"server": {
+		"port": 3000,
+		"host": "127.0.0.1",
+		"acceptable": ["application/json"],
+		"throttleRate": 50,
+		"throttleBurst": 100
+	},
+	"logger":{
+		"name":"restify-boilerplate",
+		"file":{
+			"use":true,
+			"dir":"./logs",
+			"name":"server.log",
+			"period": "1d",
+			"count": 7
+		},
+		"loggly":{
+			"use":false,
+			"config":{
+				"token": "4d5515d8-890a-4347-ae47-73bb37c67b64",
+				"subdomain": "hhbarnes",
+				"tags": ["restify-boiler"],
+				"json": true
+			},
+			"buffer":{
+				"length": 10,
+				"timeout": 2000
+			}
+		}
+	},
+	"db": {
+		"uri":"mongodb://admin:m3Sjb9XTaf@cluster0-shard-00-00-7j7gy.mongodb.net:27017,cluster0-shard-00-01-7j7gy.mongodb.net:27017,cluster0-shard-00-02-7j7gy.mongodb.net:27017/restify-boiler?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true"
+	},
+	"jwt": {
+		"issuer": "gothicfraternal270.com",
+		"audience": "gothicfraternal270.com",
+		"keys": {
+			"public": "-----BEGIN PUBLIC KEY-----MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKbJ/8B8Xp/YdnnsfxSke1tYXtl+0DtbJuz4XMtE9jApz03HBJ+ZgseYfQsatd2AUYDMYQrcYks2JPsxdNK+CeUCAwEAAQ==-----END PUBLIC KEY-----",
+			"private": "-----BEGIN RSA PRIVATE KEY-----MIIBOQIBAAJBAKbJ/8B8Xp/YdnnsfxSke1tYXtl+0DtbJuz4XMtE9jApz03HBJ+ZgseYfQsatd2AUYDMYQrcYks2JPsxdNK+CeUCAwEAAQJAUYkSU+D4yR+i23u3rDm0bDVJOP37gejPoKzRgDVYPLaHqVeuxfFg1VlUm99dO5zKo7xN7cy+3XxeReBUNE15yQIhAO4EJBQ1in7qDxiY5OtKU0DpHse+fp9LSyulqRdskfcLAiEAs2QjZMZtgTLfwRABx70LzmkuiVEC53+cw8edy3SS2M8CIFFA/qQbhxU+iDrIb1XXwMYnD0f3QzjUNmxHGIuTl9zzAiBsd13XLwtDFUmpaE5LQQkEcyCKMot5AfX9gpLsU73+jQIgR/+BmdLd+IihAh1bC7dLQ5nxL6JZHxDgu1CFa2BEHZQ=-----END RSA PRIVATE KEY-----"
+		}
+	}
+}
