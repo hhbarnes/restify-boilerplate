@@ -95,6 +95,7 @@ typings/
 # configuration files
 config/
 config.js
+config.json
 
 # RSA keys
 .key
