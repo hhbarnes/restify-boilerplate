@@ -1,12 +1,12 @@
 {
-	"name": "lodge-master",
+	"name": "restify-boilerplate",
 	"version": "0.0.1",
-	"description": "API for Lodge Master application",
+	"description": "Boilerplate for Restify app",
 	"private": true,
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/hhbarnes/lodge-master"
+		"url": "https://github.com/hhbarnes/restify-boiler"
 	},
 	"bugs": {
 		"email": "harry@barnes.in"
