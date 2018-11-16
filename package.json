@@ -1,12 +1,12 @@
 {
-	"name": "restify-boilerplate",
+	"name": "lodge-master",
 	"version": "0.0.1",
-	"description": "Base template for restify projects",
+	"description": "API for Lodge Master application",
 	"private": true,
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/hhbarnes/restify-boilerplate"
+		"url": "https://github.com/hhbarnes/lodge-master"
 	},
 	"bugs": {
 		"email": "harry@barnes.in"
@@ -21,6 +21,20 @@
 		"email": "harry@barnes.in",
 		"url": "http://harrybarnes.com/"
 	},
+	"keywords": [
+		"restify",
+		"jwt",
+		"JSONWebToken",
+		"MongoDB",
+		"Mongoose",
+		"lets-encrypt",
+		"letsencrypt",
+		"letsencrypt-auto",
+		"secure",
+		"ssl",
+		"tls",
+		"REST"
+	  ],
 	"dependencies": {
 		"acl": "^0.4.11",
 		"bunyan": "^1.8.12",
@@ -29,8 +43,10 @@
 		"extend": "^3.0.2",
 		"jsonwebtoken": "^8.3.0",
 		"lodash": "^4.17.11",
-		"mongoose": "^5.3.10",
+		"mongoose": "^5.3.12",
+		"mongoose-bcrypt": "^1.6.0",
 		"mongoose-timestamp": "^0.6.0",
+		"mongoose-type-email": "^1.0.9",
 		"nconf": "^0.10.0",
 		"q": "1.5.1",
 		"request": "^2.88.0",
