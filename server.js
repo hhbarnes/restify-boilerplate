@@ -1,9 +1,11 @@
 const restify = require('restify');
 const mongoose = require('mongoose');
+const jwt = require('restify-jwt-community');
 const logger = require('./lib/logger');
-const userRoute = require('./routes/user');
 const packageJSON = require('./package.json');
 const config = require('./config.json');
+const userRoute = require('./routes/user');
+const authRoute = require('./routes/auth');
 
 if (!process.env.NODE_ENV) {
 	process.env.NODE_ENV = 'development';
@@ -25,7 +27,7 @@ process.on('error', (err) => {
 const server = restify.createServer({
 	name: config.name || packageJSON.name,
 	version: config.version || packageJSON.version,
-	log,
+	// log,
 });
 
 server.on('uncaughtException', (req, res, route, err) => {
@@ -48,9 +50,19 @@ server.use(restify.plugins.throttle({
 	username: true,
 }));
 server.use(restify.plugins.dateParser());
+server.use(restify.plugins.dateParser());
 server.use(restify.plugins.queryParser());
-server.use(restify.plugins.fullResponse());
 server.use(restify.plugins.bodyParser());
+server.use(restify.plugins.fullResponse());
+server.use(restify.plugins.gzipResponse());
+server.use(jwt({
+	secret: config.jwt.keys.public,
+	audience: config.jwt.audience,
+	issuer: config.jwt.issuer,
+}).unless({
+	path: ['/auth'],
+}));
+/**
 server.use((req, res, next) => {
 	req.rawBody = '';
 	req.setEncoding('utf8');
@@ -61,12 +73,7 @@ server.use((req, res, next) => {
 	req.on('end', () => {
 		next();
 	});
-});
-server.use((req, res, next) => {
-	log.info(`${req.method} - ${req.url}`, req);
-	next();
-});
-server.use(restify.plugins.gzipResponse());
+}); */
 
 /**
  * Connect to MongoDB via Mongoose
@@ -99,6 +106,7 @@ db.once('open', () => {
 	 * Set up Routes
 	 */
 	userRoute.init(server);
+	authRoute.init(server);
 
 	/**
 	 * Start API Server
