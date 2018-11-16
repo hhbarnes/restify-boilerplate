@@ -4,7 +4,7 @@ module.exports.init = ((server) => {
 	/**
 	 * Create
 	 */
-	server.post('/users', (req, res, next) => {
+	server.post('/user', (req, res, next) => {
 		const data = req.body || {};
 
 		User.create(data)
@@ -13,7 +13,7 @@ module.exports.init = ((server) => {
 				next();
 			})
 			.catch((err) => {
-				res.send(500, err);
+				next(err);
 			});
 	});
 
@@ -35,28 +35,28 @@ module.exports.init = ((server) => {
 				next();
 			})
 			.catch((err) => {
-				res.send(500, err);
+				next(err);
 			});
 	});
 
 	/**
 	 * Read
 	 */
-	server.get('/users/:userId', (req, res, next) => {
+	server.get('/user/:userId', (req, res, next) => {
 		User.findById(req.params.userId)
 			.then((user) => {
 				res.send(200, user);
 				next();
 			})
 			.catch((err) => {
-				res.send(500, err);
+				next(err);
 			});
 	});
 
 	/**
 	 * Update
 	 */
-	server.put('/users/:userId', (req, res, next) => {
+	server.put('/user/:userId', (req, res, next) => {
 		const data = req.body || {};
 		const opts = {
 			new: true,
@@ -70,21 +70,21 @@ module.exports.init = ((server) => {
 				next();
 			})
 			.catch((err) => {
-				res.send(500, err);
+				next(err);
 			});
 	});
 
 	/**
 	 * Delete
 	 */
-	server.del('/users/:userId', (req, res, next) => {
+	server.del('/user/:userId', (req, res, next) => {
 		const { userId } = req.params;
 
 		User.findOneAndRemove({
 			id: userId,
 		})
 			.catch((err) => {
-				res.send(500, err);
+				next(err);
 			});
 	});
 });
